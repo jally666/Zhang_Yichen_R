@@ -38,13 +38,13 @@ exp(x)*cos(x) #create the vector of e^x*cos(x)
 ```
 
 ## Question 4
-## Calculate the following functions
+## Calculate the following formula
 ```{r}
-a <- 10:100
-sum(a^3+4*a^2)
+a <- 10:100 #create a vector (10,11,...,100)
+sum(a^3+4*a^2) # caculate the sum of formula
 
-b <- 1:25
-sum((2^b)/b + (3^b)/(b^2))
+b <- 1:25 # create a vector (1,2,...,25)
+sum((2^b)/b + (3^b)/(b^2))#caculate the sum of formula
 ```
 
 ## Question 5
