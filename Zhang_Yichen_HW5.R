@@ -18,7 +18,11 @@ writeLines(colnames(data))
 colna(diamonds)
 
 #Q4:
-sapply(diamonds,class) #determine the type of each column
+type <- function(data){
+#this function determines the type of each column in a dataframe
+sapply(data,class)
+}
+type(diamonds)
 
 #Q5:
 mean_data <- function(data){
