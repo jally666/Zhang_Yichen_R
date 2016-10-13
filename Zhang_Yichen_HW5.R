@@ -10,20 +10,43 @@ ncol(diamonds) #count the number of columns in a dataframe “diamonds”
 nrow(diamonds) #count how many rows are in a dataframe
 
 #Q3:
-writeLines(colnames(diamonds)) #extract the column names from a dataframe and print the names of the columns (one per line) to the console
+colna <- function(data){
+#this function extracts the column names from a dataframe and print the names
+#of the columns (one per line) to the console
+writeLines(colnames(data)) 
+}
+colna(diamonds)
 
 #Q4:
 sapply(diamonds,class) #determine the type of each column
 
 #Q5:
-sapply(diamonds[sapply(diamonds,is.numeric)],mean,na.rm=TRUE) #loop through any dataframe and calculate the mean of every numeric column. Label the output with the name of the column.
+mean_data <- function(data){
+#this function loops through any dataframe and calculate the mean of every numeric column.
+#Label the output with the name of the column.
+sapply(data[sapply(data,is.numeric)],mean,na.rm=TRUE)
+}
+mean_data(diamonds)
 
 #Q6:
-lapply(Filter(is.factor,diamonds),table) #loop through any dataframe and create a frequency table for every factor column. Label the output with the name of the column
+frequency_data <- function(data){
+#this function loop through any dataframe and create a frequency table for every factor
+#column. Label the output with the name of the column
+lapply(Filter(is.factor,data),table) 
+}
+frequency_data(diamonds)
 
 #Q7:
-apply(sapply(diamonds,is.na),2,sum) #loop through any dataframe and determine the number of rows containing NA in each column
-nrow(diamonds[rowSums(is.na(diamonds))>0,])/nrow(diamonds) #caculate the percentage of rows containing an NA in any of the columns
+freq_na <- function(data){
+  #this function will loop through any dataframe and determine the number of rows 
+  #containing NA (missing	value) in each column and the percentage of rows containing
+  #an NA in any of the columns
+  counts <- apply(sapply(data,is.na),2,sum) # count the number of NA in each column
+  percent <- sapply(data, function(x) sum(is.na(x))/length(x))# count the percentage of NA in each column
+  df <- rbind(counts, percent)
+  return(df)
+}
+freq_na(diamonds)
 
 #Q8:
 Pearson_coeff <- function(dafra) 
