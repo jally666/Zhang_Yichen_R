@@ -23,7 +23,7 @@ residuals <- lm1$residuals # take out all residuals from linear regression
 new_diamonds <- data.frame(diamonds,residuals) # build a new diamonds dataframe adding residuals
 ggplot(new_diamonds,aes(log(carat),residuals,color=factor(color)))+
   xlab("Weight")+ylab("Price residuals")+
-  ggtitle('Diamonds- Weight to Price')+
+  ggtitle('Diamonds- Weight to Price by Color')+
   geom_point()+ #plot the residuals and weight
   theme(plot.title=element_text(color="blue"),legend.position = "top") #put the legend of factor on the top
 
@@ -34,22 +34,25 @@ residuals <- lm1$residuals # take out all residuals from linear regression
 new_diamonds <- data.frame(diamonds,residuals) # build a new diamonds dataframe adding residuals
 p1 <- ggplot(new_diamonds,aes(log(carat),residuals))+
       xlab("Weight")+ylab("Price residuals")+
-      ggtitle('Diamonds- Weight to Price')+
+      ggtitle('Diamonds- Weight to Price by Color')+ #give the title
       geom_point(aes(colour=factor(color)))+ #plot the residuals and weight
       theme(plot.title=element_text(color="blue"),legend.position = "top")+ #put the legend of factor on the top and change title's color
       guides(col=guide_legend(nrow=1)) #make the legend in one row
 
 p2 <- ggplot(diamonds,aes(x=carat,color=color,..density..))+ 
       geom_histogram(binwidth = 0.027)+ #draw the histogram of "carat"
-      theme(legend.position = "none",axis.title=element_blank())+ #cancel the legend, title and labels
-      plot.margin=unit(c(0,0,0,0),"cm")
+      theme(legend.position = "none",
+            axis.title=element_blank(),#cancel the legend, title and labels
+            plot.margin=unit(c(0,0,0,0),"mm")) #cancel the border
 
 p3 <- ggplot(diamonds,aes(x=price,colour=color,..density..))+
       geom_histogram(binwidth = 45)+  #draw the histogram of "price"
-      theme(legend.position = "none",axis.title=element_blank()) #cancel the legend, title and labels
+      theme(legend.position = "none",
+            axis.title=element_blank(),#cancel the legend, title and labels
+            plot.margin=unit(c(0,0,0,0),"mm")) #cancel the border
 
 view2 <- viewport(width=0.4,height=0.2,x=0.79,y=0.65) #use "viewpoint" function in "grid" to locate the postions of two histograms 
-view3 <- viewport(width=0.4,height=0.2,x=0.3,y=0.2) 
+view3 <- viewport(width=0.4,height=0.2,x=0.3,y=0.21) 
 
 print(p1)
 print(p2,vp=view2)
@@ -64,7 +67,7 @@ view3 <- viewport(width=0.4,height=0.23,x=0.15,y=0.6,angle=90) #create three gra
 
 p1 <- ggplot(new_diamonds,aes(log(carat),residuals,color=factor(color)))+
       xlab("Weight")+ylab("Price residuals")+
-      ggtitle('Diamonds- Weight to Price by color')+
+      ggtitle('Diamonds- Weight to Price by Color')+
       geom_point()+ #plot the residuals and weight
       theme(plot.title=element_text(color="blue"),legend.position = "top")+ #put the legend of factor on the top and change title's
       guides(col=guide_legend(nrow=1)) #make the legend in one row
