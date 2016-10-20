@@ -11,7 +11,10 @@ ggplot(diamonds,aes(weight,price,color=factor(color)))+geom_point()+ #use ggplot
 
 
 #Q3:
-ggplot(diamonds,aes(log(carat),log(price),color=factor(color)))+ #transfer the two variable into log
+weight2 <- log(diamonds$carat)
+price2 <- log(diamonds$price) #take out these two variable then tsransfer the two variable into log
+new_data <- data.frame(diamonds,weight2,price2) #create new dataframe
+ggplot(new_data,aes(weight2,price2,color=factor(color)))+ 
   xlab("Weight")+ylab("Price")+ #rename the labels
   ggtitle('Diamonds- Weight to Price by color(Linear)')+ #give title to graph
   theme(plot.title=element_text(color="blue"))+ #change title's color
